@@ -62,7 +62,6 @@ class TaxiMap extends Component<TaxiMapProps> {
         lng,
       },
     });
-    console.log(this.state.center.region);
     this.fetchTaxis(lat, lng);
   }
 
@@ -82,7 +81,12 @@ class TaxiMap extends Component<TaxiMapProps> {
     const newCenter = splytOffices[value];
     const { lat, lng } = newCenter;
 
-    this.setState({ center: newCenter });
+    this.setState({
+      center: {
+        region: getRegionFromLatLng(lat, lng),
+        ...newCenter,
+      },
+    });
     this.fetchTaxis(lat, lng);
   }
 
@@ -98,6 +102,7 @@ class TaxiMap extends Component<TaxiMapProps> {
   render() {
     const { classes } = this.props;
     const { center, taxis } = this.state;
+
     return (
       <Container className={classes.root}>
         <Grid container spacing={3}>
@@ -108,7 +113,7 @@ class TaxiMap extends Component<TaxiMapProps> {
           </Grid>
           <Grid item xs={2}>
             <OfficesRadio
-              currentOffice={center.region || ""}
+              currentOffice={center.region}
               updateMapCenter={this.updateMapCenter}
             ></OfficesRadio>
           </Grid>
