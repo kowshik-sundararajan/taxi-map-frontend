@@ -4,7 +4,7 @@ import { findNearest } from "geolib";
 import NavigationIcon from "@material-ui/icons/Navigation";
 import { Container, Fab, Grid, withStyles } from "@material-ui/core";
 import api from "../api";
-import { splytOffices } from "../constants";
+import { GOOGLE_API_KEY, splytOffices } from "../constants";
 import TaxiCountSlider from "./TaxiCountSlider";
 import OfficesRadio from "./OfficesRadio";
 import { Taxi, TaxiResponse } from "../interfaces";
@@ -127,7 +127,7 @@ class TaxiMap extends Component<TaxiMapProps> {
             </Fab>
           </Grid>
           <Grid item xs={6}>
-            <LoadScript googleMapsApiKey="AIzaSyCw9VuV6FWHDygZgZTYpOedeNLXNkDfF7o">
+            <LoadScript googleMapsApiKey={GOOGLE_API_KEY}>
               <GoogleMap
                 mapContainerStyle={containerStyle}
                 center={center}

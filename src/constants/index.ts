@@ -1,3 +1,6 @@
+export const GOOGLE_API_KEY: string =
+  process.env.REACT_APP_GOOGLE_API_KEY || "";
+
 export const splytOffices: { [name: string]: { lat: number; lng: number } } = {
   singapore: {
     lat: 1.285194,
